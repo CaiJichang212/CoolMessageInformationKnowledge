@@ -1,0 +1,89 @@
+/* 全局 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #262626;
+  letter-spacing: 0.03em;
+}
+
+/* 段落 */
+p {
+  margin: 16px 0;
+}
+
+/* 一级标题 */
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 28px 0 16px;
+  padding-left: 12px;
+  border-left: 4px solid #1677ff;
+}
+
+/* 二级标题 */
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  color: #1677ff;
+}
+
+/* 列表 */
+ul, ol {
+  padding-left: 20px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+/* 加粗 */
+strong {
+  color: #000;
+  font-weight: 600;
+}
+
+/* 引用块（重点） */
+blockquote {
+  background: #f6f8fa;
+  border-left: 4px solid #1677ff;
+  padding: 12px 16px;
+  margin: 20px 0;
+  color: #555;
+}
+
+/* 代码块 */
+pre {
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+
+code {
+  background: #f1f1f1;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 分割线 */
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 24px 0;
+}
+
+/* 图片 */
+img {
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+/* 超链接 */
+a {
+  color: #1677ff;
+  text-decoration: none;
+}
