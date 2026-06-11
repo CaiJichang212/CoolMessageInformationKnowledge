@@ -1,3 +1,8 @@
+---
+title: Claude Code 速查指南
+cover: /Users/lzc/TNTprojectZ/CoolExplore/.trae/skills/wenyan-publish/asset/微信公众号头像.png
+---
+
 # Claude Code 速查指南（The Shorthand Guide to Everything Claude Code）
 
 > **作者**: @affaan (cogsec)
@@ -7,11 +12,11 @@
 
 ## 简介
 
-📰 **Claude Code 速查指南（The Shorthand Guide to Everything Claude Code）**
+**Claude Code 速查指南（The Shorthand Guide to Everything Claude Code）**
 
-这是我经过 10 个月每日使用后的完整配置总结：skills、hooks、subagents、MCPs、plugins，以及真正有效的方法。
+这是作者 affaan 连续 10 个月深度使用 Claude Code 后整理的完整配置总结，涵盖 skills、hooks、subagents、MCPs、plugins，以及实践中真正有效的工作方法。
 
-我从二月份实验性发布起就是 Claude Code 的重度用户，并与 @DRodriguezFX 一起凭借 [Zenith](https://zenith.chat) 完全使用 Claude Code 赢得了 Anthropic x Forum Ventures 黑客松。
+自二月份实验性发布以来，affaan 一直是 Claude Code 的重度用户，并与 @DRodriguezFX 一起，凭借完全使用 Claude Code 构建的 [Zenith](https://zenith.chat) 赢得了 Anthropic x Forum Ventures 黑客松。
 
 [嵌入推文: https://x.com/i/status/1967797706757394906]
 
@@ -19,13 +24,13 @@
 
 ## Skills and Commands
 
-Skills 就像 rules（规则），受限于特定的作用域和工作流。当需要执行特定工作流时，它们是提示词的简写形式。
+Skills 类似于 rules（规则），但更聚焦于特定作用域和工作流。需要执行某类固定流程时，它们相当于提示词的快捷封装。
 
-在与 Opus 4.5 进行长时间编码会话后，想要清理死代码和散落的 .md 文件？
+在与 Opus 4.5 进行长时间编码会话后，如果需要清理死代码和散落的 .md 文件，可以运行 `/refactor-clean`。
 
-运行 `/refactor-clean`。需要测试？`/tdd`、`/e2e`、`/test-coverage`。Skills 和 commands 可以在单个提示中串联使用。
+需要测试时，可以使用 `/tdd`、`/e2e`、`/test-coverage`。Skills 和 commands 也可以在单个提示中串联使用。
 
-我也可以创建一个 skill，在 checkpoint 更新 codemaps —— 这是一种让 Claude 快速导航代码库而无需消耗上下文做探索的方式。
+此外，也可以创建一个 skill，在 checkpoint 更新 codemaps —— 这是一种让 Claude 快速导航代码库、避免消耗过多上下文进行探索的方式。
 
 ```
 ~/.claude/skills/codemap-updater.md
@@ -49,7 +54,7 @@ Commands 是通过斜杠命令执行的 skills。它们有重叠，但存储位�
 
 ## Hooks
 
-Hooks 是基于触发器的自动化，在特定事件上触发。与 skills 不同，它们受限于工具调用和生命周期事件。
+Hooks 是基于触发器的自动化机制，会在特定事件发生时执行。与 skills 不同，它们主要绑定在工具调用和生命周期事件上。
 
 ### Hook 类型
 
@@ -84,7 +89,7 @@ Hooks 是基于触发器的自动化，在特定事件上触发。与 skills 不
 
 ## Subagents
 
-Subagents 是你的编排器（主 Claude）可以委派任务的进程，作用域有限。它们可以在后台或前台运行，释放主 agent 的上下文。
+Subagents 是编排器（主 Claude）可用于委派任务的独立进程，通常具备明确的作用域。它们可以在后台或前台运行，从而释放主 agent 的上下文压力。
 
 Subagents 与 skills 配合得很好 —— 一个能够执行 skills 子集的 subagent 可以被委派任务并自主使用这些 skills。它们还可以使用特定工具权限进行沙盒化。
 
@@ -134,7 +139,7 @@ Subagents 与 skills 配合得很好 —— 一个能够执行 skills 子集的 
 
 ## MCPs (Model Context Protocol)
 
-MCPs 直接将 Claude 连接到外部服务。它不是 API 的替代品 —— 它是围绕 API 的、由提示词驱动的包装器，在导航信息时提供更大的灵活性。
+MCPs 可以将 Claude 直接连接到外部服务。它不是 API 的替代品，而是围绕 API 构建的、由提示词驱动的封装层，在信息检索和操作编排上提供更高灵活性。
 
 **示例**：Supabase MCP 让 Claude 直接拉取特定数据，直接在源头上运行 SQL，无需复制粘贴。数据库、部署平台等也是一样。
 
@@ -142,7 +147,7 @@ MCPs 直接将 Claude 连接到外部服务。它不是 API 的替代品 —— 
 
 ### ⚠️ 关键：上下文窗口管理
 
-**谨慎选择 MCPs**。我将所有 MCPs 保存在用户配置中，但禁用所有未使用的。导航到 `/plugins` 向下滚动或运行 `/mcp`。
+**谨慎选择 MCPs**。affaan 将所有 MCPs 保存在用户配置中，但会禁用未使用的项目。可以导航到 `/plugins` 向下滚动查看，或运行 `/mcp`。
 
 在压缩之前，你的 200k 上下文窗口在启用过多工具时可能只剩 70k。性能会显著下降。
 
@@ -152,7 +157,7 @@ MCPs 直接将 Claude 连接到外部服务。它不是 API 的替代品 —— 
 
 ## Plugins
 
-Plugins 将工具打包以便轻松安装，免去繁琐的手动设置。一个 plugin 可以是 skill + MCP 的组合，也可以是 hooks/tools 打包在一起。
+Plugins 会将工具打包成便于安装的形式，减少繁琐的手动配置。一个 plugin 可以是 skill + MCP 的组合，也可以将 hooks/tools 一并打包。
 
 ### 安装 plugins
 
@@ -163,7 +168,7 @@ claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
 # 打开 Claude，运行 /plugins，找到新市场，从中安装
 ```
 
-**LSP Plugins**：如果你经常在编辑器外运行 Claude Code，LSP Plugins 特别有用。Language Server Protocol 让 Claude 实时获得类型检查、转到定义和智能补全，无需打开 IDE。
+**LSP Plugins**：如果你经常在编辑器之外运行 Claude Code，LSP Plugins 会非常有用。Language Server Protocol 能让 Claude 实时获得类型检查、转到定义和智能补全等能力，而无需打开 IDE。
 
 ```bash
 # 已启用插件示例
@@ -234,11 +239,11 @@ mgrep --web "Next.js 15 app router changes"  # 网络搜索
 
 ## 关于编辑器
 
-虽然不一定需要编辑器，但它可以对 Claude Code 工作流产生正面或负面的影响。虽然 Claude Code 可以从任何终端工作，但与一个功能强大的编辑器配对可以解锁实时文件跟踪、快速导航和集成命令执行。
+虽然不一定必须依赖编辑器，但它会显著影响 Claude Code 工作流的体验。Claude Code 可以在任何终端中运行，但搭配功能完善的编辑器，可以获得实时文件跟踪、快速导航和集成命令执行等能力。
 
-### Zed（我的首选）
+### Zed（作者的首选）
 
-我使用 [Zed](https://zed.dev) —— 一个基于 Rust 的编辑器，轻量、快速、高度可定制。
+affaan 使用 [Zed](https://zed.dev) —— 这是一个基于 Rust 的编辑器，轻量、快速且高度可定制。
 
 **为什么 Zed 与 Claude Code 配合良好：**
 
@@ -260,7 +265,7 @@ mgrep --web "Next.js 15 app router changes"  # 网络搜索
 
 ---
 
-## 我的配置
+## affaan 的配置
 
 ### Plugins
 
@@ -338,7 +343,7 @@ disabledMcpServers: [
 ]
 ```
 
-**这是关键** —— 配置了 14 个 MCPs，但每个项目只启用约 5-6 个。保持上下文窗口健康。
+**这是关键** —— 虽然配置了 14 个 MCPs，但每个项目只启用约 5-6 个，以保持上下文窗口健康。
 
 ### 关键 Hooks
 
@@ -424,7 +429,7 @@ disabledMcpServers: [
 
 ---
 
-> 注：这是细节的子集。如果大家感兴趣，我可能会发布更具体的帖子。
+> 注：这只是细节的一部分。如果大家感兴趣，作者后续可能会发布更具体的内容。
 
 ---
 
